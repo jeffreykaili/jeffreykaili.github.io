@@ -6,15 +6,22 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Jeffrey-Kai Li</title>
+                <title>hi!</title>
             <style>
+                @font-face {
+                    font-family: 'PMingLiU-ExtB';
+                    src: url('./PMINGLIU.ttf') format('truetype');
+                    font-weight: normal;
+                    font-style: normal;
+                    font-display: swap;
+                }
                 html, body {
                     height: 100%;
                     margin: 0;
                     padding: 0;
                     background: #000;
                     color: #e2e22a;
-                    font-family: 'pmingliu-extb', Arial, sans-serif;
+                    font-family: 'PMingLiU-ExtB', 'pmingliu-extb', Arial, sans-serif;
                     font-size: 1.1rem;
                     min-height: 100vh;
                     text-shadow: 0 0 1.5px #fff70033;
@@ -36,6 +43,8 @@
                     text-align: left;
                     position: relative;
                     z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.2s;
                 }
                 h1 {
                     font-size: 1.3rem;
@@ -72,7 +81,7 @@
         </head>
         <body>
             <canvas id="stars-bg"></canvas>
-            <div class="container">
+            <div class="container" id="main-content">
                 <h1>4th year cs @ university of waterloo</h1>
                 <div class="section">
                     <span class="glow">experience:</span><br>
@@ -84,7 +93,16 @@
                     <span class="email">jeffrey-kai.li [at] uwaterloo.ca</span>
                 </div>
             </div>
-            <script>
+                <script>
+                if (document.fonts && document.fonts.load) {
+                    document.fonts.load('1rem PMingLiU-ExtB').then(function() {
+                        document.getElementById('main-content').style.opacity = 1;
+                    });
+                } else {
+                    setTimeout(function() {
+                        document.getElementById('main-content').style.opacity = 1;
+                    }, 5000);
+                }
                 // 2D animated stars background
                 const canvas = document.getElementById('stars-bg');
                 const ctx = canvas.getContext('2d');
